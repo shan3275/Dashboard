@@ -1,0 +1,28 @@
+<include file="Public/left" />
+
+<form class="table-form" name="form1" method="post" action="<{:U('editclass',array('classid'=>$classid))}>">
+
+<div class="nav-table">
+	<span class="on">广告分类设置</span>
+</div>
+<div class="nav-bottom"></div>
+
+<div class="input-box">
+	<ul id="table-one">
+		<li>
+			<label for="name">广告分类名称</label>
+			<input type="text" id="name" name="name" value="<{$val.name}>" />
+		</li>
+		<li>
+			<label for="class">广告分类类型</label>
+			<select name="type" id="class">
+				<option value="1" <eq name="val.type" value="1">selected</eq>>单链接</option>
+				<option value="2" <eq name="val.type" value="2">selected</eq>>多连接</option>
+				<option value="3" <eq name="val.type" value="3">selected</eq>>文本内容</option>
+			</select>
+		</li>
+	</ul>
+	<div class="table-but"><input type="submit" name="button" id="button" value="确 认 操 作"></div>
+</div>
+</form>
+<include file="Public/foot" />

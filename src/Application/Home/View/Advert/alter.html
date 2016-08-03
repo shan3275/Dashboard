@@ -1,0 +1,129 @@
+<include file="Public/left" />
+
+
+
+<style type="text/css">
+
+  .edit-ul{display: none;}
+
+</style>
+
+
+<div class="nav-table">
+<?php if($num == 1){ ?>
+<span class="on">广告业务数据操作：日收益</span>
+<?php }elseif($num == 2){ ?>
+<span class="on">广告业务数据操作：周收益</span>
+<?php } ?>
+<div>
+
+  <a href="<{:U('edit')}>?num=1">日收益</a>&nbsp;&nbsp;
+
+  <a href="<{:U('edit')}>?num=2">周收益</a>&nbsp;&nbsp;
+
+
+</div>
+
+</div>
+
+
+
+<div class="nav-bottom"></div>
+
+
+
+<div class="input-box">
+
+
+<ul class="licai edit-ul" style="display:block">
+
+  <form class="table-form" name="form1" enctype="multipart/form-data" method="post" action="<{:U('edit',array('num'=>$num))}>">
+
+<?php if($num == 1){ ?>
+
+  <li>
+
+   <label for="title">日期</label>
+
+   <input type="date" name="date" id="title" value="" />
+
+
+  </li>
+
+  <li>
+
+   <label for="url">目标收益</label>
+
+   ￥<input type="text" name="aim" id="url" value="" />
+
+  </li>
+
+  <li>
+
+   <label for="url">实际收益</label>
+
+   ￥<input type="text" name="reality" id="url" value="" />
+
+  </li>
+
+
+  <li>
+
+   <label for="earnings">备注(可不填写)</label>
+
+   <input type="text" name="explain" id="earnings" value="" />
+
+  </li>
+
+
+    <div class="table-but"><input type="submit" name="button" id="button" value="确 认 操 作"></div>
+
+  </li>
+
+<?php }elseif($num == 2){ ?>
+  <li>
+
+   <label for="title">时间</label>
+
+   <select name="day" id="">
+     <option value="">请选择时间</option>
+     <?php foreach ($day as $key => $v): ?>
+       <option value="<{$v.id}>"><{$v.monday}>~<{$v.sunday}></option>
+     <?php endforeach ?>
+   </select>
+
+
+  </li>
+
+  <li>
+
+   <label for="url">周目标收益</label>
+
+   ￥<input type="text" name="aim" id="url" value="" />
+
+  </li>
+
+  <li>
+
+   <label for="url">周实际收益</label>
+
+   ￥<input type="text" name="reality" id="url" value="" />
+
+  </li>
+
+
+    <div class="table-but"><input type="submit" name="button" id="button" value="确 认 操 作"></div>
+
+  </li>
+<?php } ?>
+
+  </form>
+
+</ul>
+
+
+
+
+</div>
+
+<include file="Public/foot" />

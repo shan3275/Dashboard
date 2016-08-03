@@ -1,0 +1,65 @@
+<include file="Public/left" />
+
+
+
+<div class="wel"><{$AdminUser}><php>
+
+$h=date('G');
+
+if ($h<11) echo '早上好';
+
+else if ($h<13) echo '中午好';
+
+else if ($h<17) echo '下午好';
+
+else echo '晚上好';
+
+</php>，欢迎使用 海妖科技业务汇总系统 <{$Think.const.THINK_VERSION}> ！</div>
+
+
+
+<div class="time">
+
+您上次的登录时间是 <{:date("Y-m-d H:i:s",$loginTime)}>
+
+</div>
+
+
+
+<div class="home-menu">
+
+ <a href="<{:U('Index/clear')}>" class="clear">清除缓存</a>
+
+ <a href="<{:U('Index/cleardata')}>" class="clear">清除记录</a>
+
+</div>
+
+
+
+
+
+<script>
+
+$(function(){
+
+	$('tr:even').css('background','#ddd')
+
+})
+
+</script>
+
+<table class="table" width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:20px;">
+
+  <tr class="first">
+
+    <td colspan="2">海妖科技业务汇总系统 <{$Think.const.THINK_VERSION}></td>
+
+  </tr>
+
+  
+
+</table>
+
+
+
+<include file="Public/foot" />

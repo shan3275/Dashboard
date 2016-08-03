@@ -1,0 +1,96 @@
+<include file="Public/left" />
+
+<link rel="stylesheet" type="text/css" href="__STATIC__/date/date.css">
+<script src="__STATIC__/date/date.js"></script>
+<style type="text/css">
+  .edit-ul{display: none;}
+</style>
+<script type="text/javascript">
+  $(function(){
+    $('#link-type').change(function(){
+      var formtype = $(this).val();
+      if(formtype == '1'){
+        $('.licai').show().siblings('.edit-ul').hide();
+      }else{
+        $('.newslink').show().siblings('.edit-ul').hide();
+      }
+    });
+    $('#time').datetimepicker({
+      lang:'ch',
+      timepicker:false,
+      format:'m-d',
+    });
+  });
+</script>
+
+<div class="nav-table">
+<span class="on">旅游日历内容操作</span>
+</div>
+<div class="nav-bottom"></div>
+
+<div class="input-box">
+<ul>
+  <li>
+    <label for="link-type">链接类型</label>
+    <select name="link_type" id="link-type">
+      <option value="1" <eq name="val.link_type" value="1">selected</eq>>当日推荐</option>
+      <option value="2" <eq name="val.link_type" value="2">selected</eq>>地点推荐</option>
+    </select>
+  </li>
+</ul>
+
+<ul class="licai edit-ul" <if condition="($val['link_type'] eq '1') OR ($val['link_type'] eq null)">style="display:block"</if>>
+  <form class="table-form" name="form1" enctype="multipart/form-data" method="post" action="<{:U('edit',array('id'=>$id))}>">
+  <li>
+   <label for="title">标题</label>
+   <input type="text" name="title" id="title" value="<{$val.title}>" />
+   <input type="hidden" name="link_type" value="1" />
+  </li>
+  <li>
+   <label for="url">链接地址</label>
+   <input type="text" name="url" id="url" value="<{$val.url}>" />附带http://的完整链接地址
+  </li>
+  <li>
+   <label for="time">对应日期</label>
+   <input type="text" name="date" id="time" value="<{$val.date}>" />
+  </li>
+  <li>
+   <label for="photo">配图</label>
+   <input type="file" name="photo" id="photo">
+  </li>
+  <li>
+   <label for="content">描述内容</label>
+   <textarea name="content" id="content"><{$val.content}></textarea>
+  </li>
+  <li>
+    <div class="table-but"><input type="submit" name="button" id="button" value="确 认 操 作"></div>
+  </li>
+  </form>
+</ul>
+<ul class="newslink edit-ul" <if condition="($val['link_type'] eq 2)">style="display:block"</if>>
+  <form class="table-form" name="form1" enctype="multipart/form-data" method="post" action="<{:U('edit',array('id'=>$id))}>">
+  <li>
+   <label for="title">地点</label>
+   <input type="text" name="title" id="title" value="<{$val.title}>" />
+   <input type="hidden" name="link_type" class="cjrdlinktype" value="2" />
+  </li>
+  <li>
+    <label for="pro-type">地点类型</label>
+    <select name="pro_type" id="pro-type">
+      <option value="1" <eq name="val.pro_type" value="1">selected</eq>>周边</option>
+      <option value="2" <eq name="val.pro_type" value="2">selected</eq>>国内</option>
+      <option value="3" <eq name="val.pro_type" value="3">selected</eq>>境外</option>
+    </select>
+  </li>
+  <li>
+   <label for="photo">配图</label>
+   <input type="file" name="photo" id="photo">
+  </li>
+  <li>
+    <div class="table-but"><input type="submit" name="button" id="button" value="确 认 操 作"></div>
+  </li>
+  </form>
+</ul>
+
+</div>
+<include file="Public/foot" />

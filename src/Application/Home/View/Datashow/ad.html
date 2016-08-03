@@ -1,0 +1,143 @@
+<include file="Public/left" />
+
+<script>
+
+$(function(){
+
+	$("tr:even").css('background','#eee')
+
+})
+
+</script>
+
+<div class="title">业务汇总数据展示</div>
+
+<style type="text/css">
+
+  .sbox{background:#CCC; padding:5px;}
+
+  .input{border:#FFF solid 1px;}
+
+  option{margin:10px; padding:10px;}
+
+</style>
+
+<div>
+
+  <a href="<{:U('ad')}>?num=1">每日收益汇总表</a>&nbsp;&nbsp;
+
+  <a href="<{:U('ad')}>?num=2">每周收益汇总表</a>&nbsp;&nbsp;
+
+
+</div>
+
+<?php if($num == 1){ ?>
+<table class="table" width="100%" border="0" cellspacing="0" cellpadding="0">
+
+  <tr class="first">
+
+    <td width="10%" align="center">时间</td>
+
+    <?php foreach($gather as $val){ ?>
+
+    <td width="10%" align="center"><{$val.name}>业务目标</td>
+
+    <td width="10%" align="center"><{$val.name}>业务收益</td>
+
+    <?php } ?>
+
+    <td width="10%" align="center">总业务目标</td>
+
+    <td width="10%" align="center">总业务收益</td>
+
+    
+  </tr>
+
+  <?php foreach($list as $key => $val){ ?>
+
+  <tr class="first">
+
+    <td width="10%" align="center"><{$key}></td>
+
+    <?php foreach($gather as $v){ ?>
+    
+    <td width="10%" align="center">￥<{$val[$v['id']].aim}></td>
+
+    <td width="10%" align="center">￥<{$val[$v['id']].reality}></td>
+
+    <?php } ?>
+
+    <td width="10%" align="center">￥<{$val.aim}></td>
+
+    <td width="10%" align="center">￥<{$val.reality}></td> 
+
+  </tr>
+
+  <?php } ?>
+
+
+</table>
+
+<?php foreach($gather as $val){ ?>
+
+<img src="<{:U('drawXian')}>?gid=<{$val.id}>" alt="">
+
+<?php } ?>
+
+<?php }elseif($num == 2){ ?>
+<table class="table" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="first">
+
+    <td width="10%" align="center">时间</td>
+
+    <?php foreach($gather as $val){ ?>
+
+    <td width="10%" align="center"><{$val.name}>业务周目标</td>
+
+    <td width="10%" align="center"><{$val.name}>业务周收益</td>
+
+    <?php } ?>
+
+
+
+    <td width="10%" align="center">总业务周目标</td>
+
+    <td width="10%" align="center">总业务周收益</td>
+
+  </tr>
+
+  <?php foreach($listw as $key => $val){ ?>
+  
+  <tr class="first">
+
+    <td width="10%" align="center"><{$key}></td>
+
+    <?php foreach($gather as $v){ ?>
+    
+    <td width="10%" align="center">￥<{$val[$v['id']].aim}></td>
+
+    <td width="10%" align="center">￥<{$val[$v['id']].reality}></td>
+
+    <?php } ?>
+
+    <td width="10%" align="center">￥<{$val.aim}></td>
+
+    <td width="10%" align="center">￥<{$val.reality}></td> 
+
+  </tr>
+
+  <?php } ?>
+
+</table>
+
+
+<img src="<{:U('drawZhu')}>" alt="">
+<?php } ?>
+
+<{$page}>
+
+
+
+
+
+<include file="Public/foot" />

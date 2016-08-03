@@ -1,0 +1,43 @@
+<include file="Public/left" />
+
+<script type="text/javascript">
+	$(function(){
+		$('.add-input').click(function(){
+			$('#table-one').append('<li><label>广告分类</label><input type="text" name="adclass[]"><a href="javascript:;" onclick="delinput(this)">取消</a></li>');
+		});
+	});
+	function delinput(e){
+		$(e).parent().remove();
+	}
+</script>
+
+<form class="table-form" name="form1" method="post" action="">
+
+<div class="nav-table">
+<span class="on">广告分类设置</span>
+</div>
+<div class="nav-bottom"></div>
+
+
+<div class="input-box">
+<ul id="table-one">
+	<if condition="$adclass neq null">
+		<volist name="adclass" id="list" key="k">
+			<li>
+				<label>广告分类</label>
+				<input type="text" name="adclass[]" value="<{$list}>" />
+				<neq name="k" value="1"><a href="javascript:;" onclick="delinput(this)">取消</a></neq>
+			</li>
+		</volist>
+	<else />
+		<li>
+			<label>广告分类</label>
+			<input type="text" name="adclass[]" />
+		</li>
+	</if>
+</ul>
+<a href="javascript:;" class="add-input">添加分类</a>
+<div class="table-but"><input type="submit" name="button" id="button" value="确 认 操 作"></div>
+</div>
+</form>
+<include file="Public/foot" />

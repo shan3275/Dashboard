@@ -1,0 +1,52 @@
+<include file="Public/left" />
+
+<script>
+
+$(function(){
+
+  $("tr:even").css('background','#eee')
+
+})
+
+</script>
+
+<div class="title-user title">业务列表</div>
+
+
+
+
+
+
+
+<table class="table" width="100%" border="0" cellspacing="5" cellpadding="0">
+
+  <tr class="first">
+
+    <td>业务名称</td>
+
+    <td>英文缩写</td>
+
+    <td width="" align="center">操作</td>
+
+  </tr>
+
+  <volist name="user" id="list">
+
+  <tr>
+
+    <td width="40%" align="center"><{$list['name']}></td>
+
+    <td width="40%" align="center"><{$list['title']}></td>
+
+    <td width="20%" align="center"><a href="<{:U('edit','id='.$list['id'])}>">修改</a> </td>
+
+  </tr>
+
+  </volist>
+
+  
+
+</table>
+
+
+<include file="Public/foot" />

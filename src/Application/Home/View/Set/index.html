@@ -1,0 +1,27 @@
+<include file="Public/left" />
+
+<form id="form1" name="form1" method="post" action="">
+
+<div class="nav-table">
+<span class="on" href="table-one">站点设置</span>
+</div>
+<div class="nav-bottom"></div>
+
+
+<div class="input-box">
+<!--站点设置 -->
+<ul id="table-one">
+  <li>
+   <label for="SiteDomain">站点域名</label>
+   <input type="text" name="SiteDomain" id="SiteDomain" value="<{:F('SiteDomain')}>" />(请填写完整的URL如 http://www.zyab.net/)
+  </li>
+</ul>
+
+
+
+
+  <div class="table-but"><input type="submit" name="button" id="button" value="修改"></div>
+</div>
+
+</form>
+<include file="Public/foot" />

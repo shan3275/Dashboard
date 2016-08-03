@@ -1,0 +1,26 @@
+<include file="Public/left" />
+
+<form class="table-form" name="form1" enctype="multipart/form-data" method="post" action="<{:U('editcontent',array('cid'=>$classdata['id']))}>">
+
+<div class="nav-table">
+<span class="on"><{$classdata.name}>内容管理</span>
+</div>
+<div class="nav-bottom"></div>
+
+
+<div class="input-box">
+<ul id="table-one">
+  <li>
+   <label for="company">所属公司</label>
+   <input type="text" name="company" id="company" value="<{$val.company}>" />
+  </li>
+  <li>
+   <label for="content">链接地址</label>
+   <input type="text" name="content" id="content" value="<{$val.content}>" />附带http://的完整链接地址
+  </li>
+</ul>
+
+<div class="table-but"><input type="submit" name="button" id="button" value="确 认 操 作"></div>
+</div>
+</form>
+<include file="Public/foot" />

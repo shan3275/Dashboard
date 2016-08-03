@@ -1,0 +1,117 @@
+<include file="Public/left" />
+
+<script>
+
+$(function(){
+
+	$("tr:even").css('background','#eee')
+
+})
+
+</script>
+
+<div class="title">推广业务汇总数据展示</div>
+
+<style type="text/css">
+
+  .sbox{background:#CCC; padding:5px;}
+
+  .input{border:#FFF solid 1px;}
+
+  option{margin:10px; padding:10px;}
+
+</style>
+
+<div>
+
+  <a href="<{:U('ad')}>?num=1">每日收益汇总</a>&nbsp;&nbsp;
+
+  <a href="<{:U('ad')}>?num=2">每周收益汇总</a>&nbsp;&nbsp;
+
+
+</div>
+
+
+<?php if($num == 1){ ?>
+
+<img src="<{:U('drawXian')}>" alt="">
+
+<table class="table" width="100%" border="0" cellspacing="0" cellpadding="0">
+
+  <tr class="first">
+
+    <td width="20%" align="center">时间</td>
+
+    <td width="20%" align="center">单日目标</td>
+
+    <td width="20%" align="center">单日收益</td>
+
+    <td width="20%" align="center">备注</td>
+
+    <td width="20%" align="center">操作</td>
+
+  </tr>
+  <?php foreach($advert as $val){ ?>
+
+  <?php if(!isset($val['ex_aim'])){continue;} ?>
+
+  <tr class="first">
+
+    <td align="center"><{$val.date}></td>
+
+    <td align="center">￥<{$val.ex_aim}></td>
+
+    <td align="center">￥<{$val.ex_reality}></td>
+
+    <td align="center"><{$val.ex_explain}></td>
+
+    <td align="center"><a class="ebit" href="<{:U('edit',array('id'=>$val['id'],'num'=>1))}>" onClick="return confirm('确定要修改吗？')">修改</a></td>
+
+  </tr>
+  <?php } ?>
+
+
+</table>
+
+<?php }elseif($num == 2){ ?>
+
+<img src="<{:U('drawZhu')}>" alt="">
+
+<table class="table" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="first">
+
+    <td width="20%" align="center">时间</td>
+
+    <td width="20%" align="center">周目标</td>
+
+    <td width="20%" align="center">周收益</td>
+
+
+
+  </tr>
+  <?php foreach($week as $val){ ?>
+  <tr class="first">
+
+    <td align="center"><{$val.monday}>~<{$val.sunday}></td>
+
+    <td align="center">￥<{$val.ex_aim}></td>
+
+    <td align="center">￥<{$val.ex_reality}></td>
+
+   
+
+
+  </tr>
+  <?php } ?>
+</table>
+
+
+<?php } ?>
+
+<{$page}>
+
+
+
+
+
+<include file="Public/foot" />

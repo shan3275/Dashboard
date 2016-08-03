@@ -1,0 +1,36 @@
+<include file="Public/left" />
+
+<script>
+$(function(){
+	$("tr:even").css('background','#eee')
+})
+</script>
+<div class="title-user title">管理员列表</div>
+
+
+
+<table class="table" width="100%" border="0" cellspacing="5" cellpadding="0">
+  <tr class="first">
+    <td>帐号</td>
+    <td>类型</td>
+    <td width="100" align="center">登录次数</td>
+    <td width="100" align="center">最后登录IP</td>
+    <td width="150" align="center">登录时间</td>
+    <td width="120" align="center">操作</td>
+  </tr>
+  <volist name="user" id="list">
+  <tr>
+    <td><{$list['user']}></td>
+    <td><eq name="list.lever" value="1">子账号<else/>总账号</eq></td>
+    <td width="100" align="center"><{$list['num']}></td>
+    <td width="100" align="center"><{$list['lastip']}></td>
+    <td width="150" align="center"><{:date("Y-m-d H:i:s",$list['lasttime'])}></td>
+    <td width="120" align="center"><a href="<{:U('edit','id='.$list['id'])}>">修改</a> <a href="<{:U('delete','id='.$list['id'])}>" onClick="return confirm('确定要删除吗？')">删除</a></td>
+  </tr>
+  </volist>
+  
+</table>
+
+
+
+<include file="Public/foot" />

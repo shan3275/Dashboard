@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>财经日历预览</title>
+		<script language="javascript" type="text/javascript" src="__STATIC__/js/jquery.js"></script>
+	</head>
+	<body>
+		<style type="text/css">
+			*{font-family:"微软雅黑", Arial;padding:0;margin:0;}
+			a{text-decoration: none;}
+			.witmenu-down-box-close{display:block;position:absolute;opacity:0.8;border-radius:1em;background-color:#fff;color:#555;z-index:5;right:0;top:0;line-height:20px;text-align:center;width:20px;font-size:10px}
+			.witmenu-down-box{width: 320px;}
+			.cjrd-box{border-radius: 10px;border: 1px solid #b4b4b4;overflow: hidden;}
+			.cjrd-box table{margin: 0;padding: 0;width: 100%;text-align: center;margin-bottom: 10px;}
+			.cjrd-box table a{color: #333;font-size: 13px;}
+			.cjrd-table-box{padding: 0 5px;}
+			.cjrd-menu{height: 39px;border-bottom: 1px solid #b4b4b4;}
+			.cjrd-menu a{font-size:18px;line-height: 39px;border-left: 1px solid #b4b4b4;width: 106px;text-align: center;background: #efe5cc;color: #434343;display: inline-block;padding: 0;font-weight: bold;}
+			.cjrd-menu a:first-child{border: none;}
+			.cjrd-menu .cjrd-table-hold{background: #fb5259;color: #fff;}
+			.yh-table tr td,.p2p-table tr td,.bl-table tr td{font-size: 13px;padding-top: 10px;}
+			.yh-table tr:first-child td,.p2p-table tr:first-child td,.bl-table tr:first-child td{font-size: 12px;border-bottom: 1px solid #b4b4b4;color: #333;} 
+			 .red-ratio{color: #fb5259;}
+			 .cjyw-title{background: url('__IMG__/cjyw-title.jpg') no-repeat;height: 29px;width: 320px;}
+			 .cjyw-title a{float: right;line-height: 29px;font-size: 13px;color: #fff;margin-right: 14px;}
+			.cjyw-wzul-box{padding: 10px 8px;}
+			.cjrd-box ul li{list-style:none;}
+			.cjyw-wzul-box ul li a{color: #666;font-size: 13px;}
+			.cjyw-hot-box{height: 35px;overflow: hidden;}
+			.cjyw-hot-title{float: left;height: 35px;background: #fb5259;color: #fff;font-size: 13px;line-height: 35px;padding: 0 8px;}
+			.cjyw-hot-link-box{float: right;width: 278px;height: 35px;background: #dadada;position: relative;}
+			.cjyw-hot-link-box ul{position: absolute;top: 0;}
+			.cjyw-hot-link-box ul li{height: 35px;line-height: 35px;padding-left: 5px;overflow: hidden;}
+			.cjyw-hot-link-box ul li a{font-size: 13px;color: #000;}
+		</style>
+		<script type="text/javascript">
+			$(function(){
+				var settimehotlinkmove = setInterval(hotlinkmove,2000);
+				$('.cjyw-hot-link-box').hover(function(){
+					clearInterval(settimehotlinkmove);
+				},function(){
+					settimehotlinkmove = setInterval(hotlinkmove,2000);
+				});
+			});
+			function hotlinkmove(){
+			    var ulele = $(".cjyw-hot-link-box ul");
+			    var ulH = ulele.height() - 35;
+			    var ultop = ulele.css("top");
+			    ultop = parseInt(ultop.match(/\d+/g));
+			    if(ulH <= ultop){
+			        ulele.animate({
+			            top: "0"
+			        }, 500);
+			    }else{
+			        ulele.animate({
+			            top: "-=35px"
+			        }, 500);
+			    }
+			}
+			function cjrdtableshow(pre,ele){
+				$('.cjrd-menu a').removeClass('cjrd-table-hold');
+				$(ele).addClass('cjrd-table-hold');
+				$('.'+pre+'-table').show().siblings('table').hide();
+			}
+		</script>
+		
+		<div class='cjrd-box witmenu-down-box'>
+			<a href='javascript:;' class='witmenu-down-box-close'>X</a>
+			<div class='cjrd-menu'>
+				<a href='javascript:;' class='cjrd-table-hold' onmouseover="cjrdtableshow('yh',this)">银行理财</a><!----><a href='javascript:;' onmouseover="cjrdtableshow('p2p',this)">P2P理财</a><!----><a href='javascript:;' onmouseover="cjrdtableshow('bl',this)">宝类理财</a>
+			</div>
+			<div class='cjrd-table-box'>
+				<table class='yh-table' border='0' cellspacing='0' cellpadding='0'>
+					<tr>
+						<td>产品名称</td>
+						<td>
+							参&nbsp;&nbsp;&nbsp;&nbsp;考<br/>
+							年收益
+						</td>
+						<td>
+							起投<br/>
+							金额
+						</td>
+					</tr>
+					<volist name="product" id="list">
+						<eq name="list.pro_type" value="1">
+							<tr>
+								<td align='left'><a href='<{$list.url}>' target='_blank'><{$list.title}></a></td>
+								<td class='red-ratio'><{$list.earnings}></td>
+								<td><{$list.qtgs}></td>
+							</tr>
+						</eq>
+					</volist>
+				</table>
+				<table class='p2p-table' style='display:none;' border='0' cellspacing='0' cellpadding='0'>
+					<tr>
+						<td width='205'>平台名称</td>
+						<td>
+							年化收<br/>
+							益区间
+						</td>
+						<td>
+							起投<br/>
+							金额
+						</td>
+					</tr>
+					<volist name="product" id="list">
+						<eq name="list.pro_type" value="2">
+							<tr>
+								<td><a href='<{$list.url}>' target='_blank'><{$list.title}></a></td>
+								<td class='red-ratio'><{$list.earnings}></td>
+								<td><{$list.qtgs}></td>
+							</tr>
+						</eq>
+					</volist>
+				</table>
+				<table class='bl-table' style='display:none;' border='0' cellspacing='0' cellpadding='0'>
+					<tr>
+						<td width='205'>产品名称</td>
+						<td>
+							七日年<br/>
+							化收益
+						</td>
+						<td>
+							产品<br/>
+							归属
+						</td>
+					</tr>
+					<volist name="product" id="list">
+						<eq name="list.pro_type" value="3">
+							<tr>
+								<td><a href='<{$list.url}>' target='_blank'><{$list.title}></a></td>
+								<td class='red-ratio'><{$list.earnings}></td>
+								<td><{$list.qtgs}></td>
+							</tr>
+						</eq>
+					</volist>
+				</table>
+			</div> 
+			<div class='cjyw-box'>
+				<div class='cjyw-title'><a href=''>更多</a></div>
+				<div class='cjyw-wzul-box'>
+					<ul>
+						<volist name="news" id="list">
+							<li><a href='<{$list.url}>' target='_blank'>·&nbsp;<{$list.title}></a></li>
+						</volist>
+					</ul>
+				</div>
+				<div class='cjyw-hot-box'>
+					<div class='cjyw-hot-title'>热点</div>
+					<div class='cjyw-hot-link-box'>
+						<ul>
+							<volist name="hot" id="list">
+								<li><a href='<{$list.url}>' target='_blank'><{$list.title}></a></li>
+							</volist>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

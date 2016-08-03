@@ -1,0 +1,60 @@
+[ 2016-07-02T11:51:52+08:00 ] ::1 /hybusi/Public/Home/css/admin-style.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001422s ]
+ERR: 无法加载模块:Public
+
+[ 2016-07-02T11:51:52+08:00 ] ::1 /hybusi/Public/Static/js/jquery.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000035s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002205s ]
+ERR: 无法加载模块:Public
+
+[ 2016-07-02T11:51:52+08:00 ] ::1 /hybusi/Public/Home/js/admin-index.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000038s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001247s ]
+ERR: 无法加载模块:Public
+
+[ 2016-07-02T12:16:49+08:00 ] ::1 /hybusi/advert/drawXian
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000822s ]
+ERR: 无法加载模块:Advert
+
+[ 2016-07-02T12:17:12+08:00 ] ::1 /hybusi/advert/drawXian
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000936s ]
+ERR: 无法加载模块:Advert
+
+[ 2016-07-02T12:17:16+08:00 ] ::1 /hybusi/advert/drawXian
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000674s ]
+ERR: 无法加载模块:Advert
+
+[ 2016-07-02T12:17:20+08:00 ] ::1 /hybusi/advert/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000880s ]
+ERR: 无法加载模块:Advert
+
+[ 2016-07-02T12:17:58+08:00 ] ::1 /hybusi/index.php/Advert/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000038s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001072s ]
+ERR: 无法加载模块:Advert
+
+[ 2016-07-02T12:18:05+08:00 ] ::1 /hybusi/index/Advert/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000919s ]
+ERR: 无法加载模块:Index
+
+[ 2016-07-02T12:18:09+08:00 ] ::1 /hybusi/index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000961s ]
+ERR: 无法加载模块:Index
+

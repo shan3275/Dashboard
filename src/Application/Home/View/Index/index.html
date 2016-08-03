@@ -1,0 +1,149 @@
+<!doctype html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8">
+
+<title>海妖科技业务汇总系统</title>
+
+<meta name="robots" content="nofollow" />
+
+<link href="__CSS__/admin-style.css" rel="stylesheet" type="text/css" />
+
+<script language="javascript" type="text/javascript" src="__STATIC__/js/jquery.js"></script>
+
+<script language="javascript" type="text/javascript" src="__JS__/admin-index.js"></script>
+
+</head>
+
+
+
+<body>
+
+
+
+<div class="head">
+
+<span class="z">
+
+<a href='__SELF__'></a>
+
+</span>
+
+<span class="y">
+
+  欢迎 <font color="#FFF"><{$AdminUser}></font> 使用海妖科技业务汇总系统&nbsp;<{$Think.const.THINK_VERSION}>
+
+  <a class="tui" href="<{:U('Login/loginout')}>">退出登录</a>
+
+</span>
+
+</div>
+
+
+
+<div class="left z" id="left">
+
+  <div class="menu" id="index-Index">
+
+   <h3 onclick="menu('index-Index')">管理中心</h3>
+
+   <p id="menu-Index-index"><a href="<{:U('Index/home')}>">管理首页</a></p>
+
+   <eq name="lever" value="0">
+
+   <p id="menu-Index-Set-index"><a href="<{:U('Set/index')}>">系统设置</a></p>
+
+   </eq>
+
+  </div>
+
+
+
+  <eq name="lever" value="0">
+
+  <div class="menu" id="index-Master">
+
+   <h3 onclick="menu('index-Master')">用户管理</h3>
+
+   <p id="menu-Master-index"><a href="<{:U('Master/index')}>">管理员列表</a></p>
+
+   <p id="menu-Master-add"><a href="<{:U('Master/add')}>">添加管理员</a></p>
+
+  </div>
+
+  </eq>
+
+
+
+  <div class="menu" id="index-Plug">
+
+   <h3 onclick="menu('index-Plug')">业务管理</h3>
+
+   <eq name="lever" value="0">
+    
+    <p id="menu-Plug-index"><a href="<{:U('Cjrd/index')}>">新增业务</a></p>
+
+    <!-- <p id="menu-Plug-index"><a href="<{:U('Cjrd/ad')}>">业务列表</a></p> -->
+
+   </eq>
+
+  <?php foreach($gather as $val){ ?>
+
+   <p id="menu-Plug-index"><a href="<{:U('Advert/add',array('gid'=>$val['id']))}>"><{$val.name}>数据添加</a></p>
+
+  <?php } ?>
+
+  </div>
+
+  </neq>
+
+  
+
+  <div class="menu" id="index-Datashow">
+
+   <h3 onclick="menu('index-Datashow')">数据展示</h3>
+
+   <eq name="lever" value="0">
+
+   <p id="menu-Datashow-index"><a href="<{:U('Datashow/ad')}>?num=1">业务收益</a></p>
+
+  </eq>
+
+  <?php foreach($gather as $val){ ?>
+
+     <p id="menu-Datashow-index"><a href="<{:U('Advert/ad',array('gid'=>$val['id']))}>?num=1"><{$val.name}>业务收益</a></p>
+
+  <?php } ?>
+
+  </div>
+
+  
+
+  <div class="menu" id="CopyRight">
+
+   <h3>版权所有</h3>
+
+   <ul>
+
+   <li class="yz"><a href="http://www.haiyaotech.com/" target="_blank">海妖科技</a></li>
+
+   <li class="tui"><a href="<{:U('Login/loginout')}>">退出登录</a></li>
+
+   </ul>
+
+  </div>
+
+</div>
+
+
+
+<iframe id="right" src="<{:U('Index/home')}>" frameborder="0" ></iframe>
+
+
+
+</body>
+
+</html>

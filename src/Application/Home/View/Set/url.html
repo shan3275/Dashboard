@@ -1,0 +1,54 @@
+<include file="Public/left" />
+
+<form id="form1" name="form1" method="post" action="<{:U('set')}>">
+
+<div class="nav-table">
+<span class="on" href="table-one">URL设置</span>
+</div>
+<div class="nav-bottom"></div>
+
+
+<div class="input-box">
+<!--站点设置 -->
+<style type="text/css">
+.input-box li{border-bottom:#CCC solid 1px; padding:15px 0px;}
+.input-box span{ margin-right:20px;}
+.input-box label{display:inline; margin:0px; margin-right:20px;}
+.input-box .input{display:inline; margin:0px; width:30px;}
+.input-box i{cursor:pointer;}
+</style>
+<ul id="table-one">
+  <li>
+   <span>URL模式</span>
+     <label>
+     <input class="input" type="radio" name="url" <{$url['url'] == 1 ? 'checked' : ''}> value="1" id="url_2">PATHINFO (<i title="形式如:index.php/category/id/xxx">?</i>)
+     </label>
+     <label>
+     <input class="input" type="radio" name="url" <{$url['url'] == 2 ? 'checked' : ''}> value="2" id="url_1">伪静态 (<i title="通过下方设置可以自定义路径，需要Rewrite支持">?</i>)
+     </label>
+     <label>
+     <input class="input" type="radio" name="url" <{$url['url'] == 0 ? 'checked' : ''}> value="0" id="url_0">普通模式 (<i title="形式如:index.php?m=xxx&c=xxx&a=xxx">?</i>)
+     </label>
+  </li>
+
+  <li>以下设置仅在URL模式为伪静态时才会进行保存，且只需要在开启伪静态时进行设置，如果采用默认设置留空即可！{url}代表别名或者ID，page代表页数</li>
+  <li>
+   <label for="aurl">内容URL</label>
+   <input type="text" name="aurl" id="aurl" value="<{$url['aurl']}>" />(必须包含{url})
+  </li>
+  <li>
+   <label for="curl">单页分类</label>
+   <input type="text" name="curl" id="curl" value="<{$url['curl']}>" />(必须包含{url})
+  </li>
+  <li style="border:0;">
+   <label for="purl">类别分页</label>
+   <input type="text" name="purl" id="purl" value="<{$url['purl']}>" />(必须包含{url}和{page})
+  </li>
+</ul>
+
+
+<div class="table-but"><input type="submit" name="button" id="button" value="修改"></div>
+</div>
+
+</form>
+<include file="Public/foot" />

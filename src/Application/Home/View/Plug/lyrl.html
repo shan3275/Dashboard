@@ -1,0 +1,50 @@
+<include file="Public/left" />
+
+<script>
+$(function(){
+	$("tr:even").css('background','#eee')
+})
+</script>
+<div class="title"><{$classdata.name}>链接列表</div>
+<a href="<{:U('editlink',array('edit'=>1,'cid'=>$classdata['id']))}>">添加链接</a>
+
+<table class="table" width="100%" border="0" cellspacing="5" cellpadding="0">
+  <tr class="first">
+    <td width="16%" align="center">所属公司</td>
+    <td width="17%" align="center">链接名称</td>
+    <td width="16%" align="center">链接类型</td>
+    <td width="16%" align="center">添加时间</td>
+    <td width="16%" align="center">修改时间</td>
+    <td width="16%" align="center">操作</td>
+  </tr>
+  <volist name="val" id="list">
+    <tr>
+      <td align="center"><{$list['company']}></td>
+      <td align="center">
+        <a href="<{$list['content']}>" target="_blank"><{$list['title']}></a>
+      </td>
+      <td align="center">
+        <if condition="$list['link_type'] eq 1">
+        理财产品
+        <elseif condition="$list['link_type'] eq 2" />
+        财经新闻
+        <elseif condition="$list['link_type'] eq 3" />
+        热点资讯
+        </if>
+      </td>
+      <td align="center"><{:date("Y-m-d H:i:s",$list['create_time'])}></td>
+      <td align="center">
+        <eq name="list['update_time']" value="0">未进行修改操作<else/><{:date("Y-m-d H:i:s",$list['update_time'])}></eq>
+      </td>
+      <td align="center">
+        <a href="<{:U('editlink',array('edit'=>2,'cid'=>$classdata['id'],'id'=>$list['id']))}>">修改</a> 
+        <a href="<{:U('delete',array('id'=>$list['id'],'type'=>2))}>" onClick="return confirm('确定要删除吗？')">删除</a>
+      </td>
+    </tr>
+  </volist>
+  
+</table>
+
+
+
+<include file="Public/foot" />

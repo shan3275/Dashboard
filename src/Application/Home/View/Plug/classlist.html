@@ -1,0 +1,44 @@
+<include file="Public/left" />
+
+<script>
+$(function(){
+	$("tr:even").css('background','#eee')
+})
+</script>
+<div class="title">广告分类列表</div>
+
+<table class="table" width="100%" border="0" cellspacing="5" cellpadding="0">
+  <tr class="first">
+    <td width="20%" align="center">分类名称</td>
+    <td width="20%" align="center">分类类型</td>
+    <td width="20%" align="center">添加时间</td>
+    <td width="20%" align="center">修改时间</td>
+    <td width="20%" align="center">操作</td>
+  </tr>
+  <volist name="class" id="list">
+    <tr>
+      <td width="20%" align="center"><{$list['name']}></td>
+      <td width="20%" align="center">
+        <switch name="list.type">
+          <case value="1">单链接</case>
+          <case value="2">多链接</case>
+          <case value="3">文本内容</case>
+        </switch>
+      </td>
+      <td width="20%" align="center"><{:date("Y-m-d H:i:s",$list['create_time'])}></td>
+      <td width="20%" align="center">
+        <eq name="list['update_time']" value="0">未进行修改操作<else/><{:date("Y-m-d H:i:s",$list['update_time'])}></eq>
+      </td>
+      <td width="20%" align="center">
+        <a href="<{:U('editclass',array('id'=>$list['id']))}>">修改</a> 
+        <a href="<{:U('content',array('id'=>$list['id']))}>">内容管理</a> 
+        <a href="<{:U('delete',array('id'=>$list['id'],'type'=>1))}>" onClick="return confirm('所属分类下所有内容都将删除，确定要删除吗？')">删除</a>
+      </td>
+    </tr>
+  </volist>
+  
+</table>
+
+
+
+<include file="Public/foot" />

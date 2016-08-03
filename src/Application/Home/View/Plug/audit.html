@@ -1,0 +1,45 @@
+<include file="Public/left" />
+
+<script>
+$(function(){
+	$("tr:even").css('background','#eee')
+})
+</script>
+<div class="title">
+  内容审核&nbsp;&nbsp;&nbsp;
+  <a href="<{:U('Cjrd/show')}>" target="_blank">财经热点预览</a>&nbsp;&nbsp;&nbsp;
+  <a href="<{:U('Lyrl/show')}>" target="_blank">旅游日历预览</a>
+</div>
+
+<table class="table" width="100%" border="0" cellspacing="5" cellpadding="0">
+  <tr class="first">
+    <td width="15%" align="center">名称</td>
+    <td width="15%" align="center">链接</td>
+    <td width="15%" align="center">添加时间</td>
+    <td width="15%" align="center">修改时间</td>
+    <td width="14%" align="center">归属</td>
+    <td width="14%" align="center">操作</td>
+  </tr>
+  <volist name="ready" id="list">
+    <tr>
+      <td align="center"><{$list['title']}></td>
+      <td align="center">
+        <a href="<{$list['url']}>" target="_blank"><{$list['url']}></a>
+      </td>
+      <td align="center"><{:date("Y-m-d H:i:s",$list['create_time'])}></td>
+      <td align="center">
+        <eq name="list['update_time']" value="0">未进行修改操作<else/><{:date("Y-m-d H:i:s",$list['update_time'])}></eq>
+      </td>
+      <td align="center">
+        <eq name='list.type' value="1">财经热点<else/>旅游日历</eq>
+      </td>
+      <td align="center">
+        <a href="<{:U('audit',array('id'=>$list['id']))}>">审核</a> 
+        <a href="<{:U('del',array('id'=>$list['id']))}>" onClick="return confirm('确定要删除吗？')">删除</a>
+      </td>
+    </tr>
+  </volist>
+</table>
+<{$page}>
+
+<include file="Public/foot" />

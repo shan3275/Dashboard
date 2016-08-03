@@ -1,0 +1,43 @@
+<include file="Public/left" />
+<script>
+$(function(){
+	$("tr:even").css('background','#eee')
+})
+</script>
+<div class="title">财经热点数据展示</div>
+<style type="text/css">
+  .sbox{background:#CCC; padding:5px;}
+  .input{border:#FFF solid 1px;}
+  option{margin:10px; padding:10px;}
+</style>
+<div>
+  <span>总展示数量：<{$showcount}></span>&nbsp;&nbsp;
+  <span>当日展示数量：<{$todayshow}></span>&nbsp;&nbsp;
+  <span>总点击数量：<{$clickcount}></span>&nbsp;&nbsp;
+  <span>当日点击数量：<{$todayclick}></span>
+</div>
+
+<table class="table" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="first">
+    <td width="20%" align="center">点击来源地址</td>
+    <td width="20%" align="center">总点击</td>
+    <td width="20%" align="center">当日点击</td>
+    <td width="20%" align="center">最新展示时间</td>
+    <td width="20%" align="center">最新点击时间</td>
+<!--     <td width="20%" align="center">操作</td> -->
+  </tr>
+  <volist name="datashow" id="list">
+  <tr>
+    <td width="20%" align="center"><{$list.fromurl}></td>
+    <td width="20%" align="center"><{$list.cc}></td>
+    <td width="20%" align="center"><{:todayclick('ac',$list['fromurl'])}></td>
+    <td width="20%" align="center"><{:newtimeshow('ac',$list['fromurl'])}></td>
+    <td width="20%" align="center"><{$list.nctime|date="Y-m-d H:i:s",###}></td>
+  <!--   <td width="20%" align="center"><a class="del" href="<{:U('delete','id='.$list['id'])}>" onClick="return confirm('确定要删除吗？')">删除</a></td> -->
+  </tr>
+  </volist>
+</table>
+<{$page}>
+
+
+<include file="Public/foot" />

@@ -1,0 +1,202 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="__CSS__/travel.css"/>
+		<title>江苏省</title>
+		<script src="js/datouwang.js"></script>
+		<script type="text/javascript" src="__STATIC__/js/jquery.js" ></script>
+		<script type="text/javascript" src="__JS__/datouwang.js" ></script>
+		<script type="text/javascript">
+			$(function(){
+				bothdatetable();
+				$('#date').focus(function(){
+					$('.content').slideDown();
+				});
+				$('.removedate').click(function(){
+					$('.content').slideUp();
+					$('#date').val('');
+				});
+				$('.datetable tbody tr:gt(0) td').click(function(){
+					var day = $(this).find('.havedate').text();
+					if(day != ''){
+						day = parseInt(day) < 10 ? '0' + day : day;
+						var month = parseInt($('#monthsel').val()) < 10 ? '0' + $('#monthsel').val() : $('#monthsel').val();
+						var dateval = $('#yearsel').val() + '-' + month + '-' + day;
+						$('#date').val(dateval);
+						$('.content').hide();
+					}
+				});
+			});
+			function changelocation(loc,ele){
+				$('.tab-nav-btn').removeClass('active');
+				$(ele).addClass('active');
+				$('#'+loc).fadeIn().siblings('.swiper-slide').hide();
+			}
+			function bothdatetable(){
+				var myDate = new Date();
+				var year=myDate.getFullYear();    //获取完整的年份(4位,1970-????)
+				var month=parseInt(myDate.getMonth())+1;       //获取当前月份(0-11,0代表1月)
+				var day=myDate.getDate();        //获取当前日(1-31)
+				var weekDay=parseInt(myDate.getDay());         //获取当前星期X(0-6,0代表星期天)
+				$("#day").html(year+"年"+month+"月"+day+"日");
+				switch(weekDay)
+				{
+				case 0:
+					$("#week").html("星期日");
+					break;
+				case 1:
+					$("#week").html("星期一");
+					break;
+				case 2:
+					$("#week").html("星期二");
+					break;
+				case 3:
+					$("#week").html("星期三");
+					break;
+				case 4:
+					$("#week").html("星期四");
+					break;
+				case 5:
+					$("#week").html("星期五");
+					break;
+				case 6:
+					$("#week").html("星期六");
+					break;
+				}
+				for(i=2000;i<2050;i++){$('#yearsel').append('<option>'+i)};
+				for(i=1;i<13;i++){$('#monthsel').append('<option>'+i)};
+				var gNum;
+				var datetablechar;
+				for(i=0;i<6;i++) {
+					datetablechar += '<tr align="center">';
+					for(j=0;j<7;j++) {
+						gNum = i*7+j;
+						datetablechar += '<td id="GD-' + gNum +'"><font id="SD' + gNum +'" size=2 face="Arial Black"';
+						if(j == 0) datetablechar += 'color="red"';
+						if(j == 6) datetablechar += 'color="#000080"';
+						datetablechar += '></font><br/><font id="LD' + gNum + '" size=2 style="font-size:9pt"></font></td>';
+					}
+					datetablechar += '</tr>';
+				}
+				$('#week-title').after(datetablechar);
+			}
+		</script>
+	</head>
+	<body onload="initial()">
+		<div class="xw-search-areaa">
+			<span class="arr-top"></span>
+			<div class="search-wrapper">
+				<div class="search-main">
+					<div class="search-cond">
+						<form>
+							<div class="col-100">
+								<div class="col-33 col" style="position:relative;">
+									<input type="text" id="date" placeholder="请选择时间">
+								</div>
+								<div class="col-25 col">
+									<div class="select-area">
+										<select>
+											<option>携程</option>
+											<option>途牛</option>
+											<option>同程</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-42 col">
+									<input type="text" placeholder="按目的地搜索" class="search-text" id="destination" onkeypress="EnterPress(event)"/>
+									<a class="btn search"></a>
+								</div>
+							</div>
+							<div class="col-100" style="font-size:14px;color:#666;">
+								<div class="col-42 col" id="day"></div>
+								<div class="col-19 col" id="week"></div>
+								<div class="col-9 col">晴</div>
+								<div class="col-30 col text-right">所在地：南京</div>
+							</div>
+						</form>
+					</div>
+					<div class="search-content " id="img">
+						<div class="main-sec">
+							<div class="img-wrapper"><img width="118px" height="80" src="<{$today.photo}>"><i>当日推荐</i></div>
+							<h2><{$today.title}></h2>
+							<p><{:mb_substr($today['content'],0,30,'utf-8')}>......<a href="<{$today.url}>" id="detail" target="_blank">[详情]</a></p>
+						</div>
+						<div class="tab">
+							<div class="tab-nav">
+								<span class="tab-nav-btn active" onclick=changelocation('around',this)>周边</span>
+								<span class="tab-nav-btn" onclick=changelocation('guonei',this)>国内</span>
+								<span class="tab-nav-btn" onclick=changelocation('abroad',this)>境外</span>
+								<span style="background-color:  #0066FF" class="tab-nav-btn active" id="next">换一批</span>
+							</div>
+							<div class="swiper-container" style="margin-top:7px;">
+			      				<div class="swiper-wrapper">
+									<div class="swiper-slide" id="around">
+										<volist name="locz" id="list" key="k">
+											<div class="list-item <gt name="k" value="1">off-left-9</gt>">
+												<span class="sec-name">
+													<i class="xw-icon xw-icon1"></i><{$list.title}>
+												</span>
+												<img id="tests1" src="<{$list.photo}>" width="90px" height="149px" />
+											</div>
+										</volist>
+									</div>
+									<div class="swiper-slide" id="guonei" style="display:none;">
+										<volist name="locn" id="list" key="k">
+											<div class="list-item <gt name="k" value="1">off-left-9</gt>">
+												<span class="sec-name">
+													<i class="xw-icon xw-icon1"></i><{$list.title}>
+												</span>
+												<img id="tests1" src="<{$list.photo}>" width="90px" height="149px" />
+											</div>
+										</volist>
+									</div>
+									<div class="swiper-slide" id="abroad" style="display:none;">
+										<volist name="locw" id="list" key="k">
+											<div class="list-item <gt name="k" value="1">off-left-9</gt>">
+												<span class="sec-name">
+													<i class="xw-icon xw-icon1"></i><{$list.title}>
+												</span>
+												<img id="tests1" src="<{$list.photo}>" width="90px" height="149px" />
+											</div>
+										</volist>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<form name="CLD" class="content">
+				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="datetable">
+					<thead>
+						<tr>
+							<td colSpan=7>
+								<span>公历</span>
+								<select name="SY" id="yearsel" onchange="changeCld();" style="font-SIZE: 9pt">
+								</select>
+								<span>年</span>
+								<select name="SM" id="monthsel" onchange="changeCld();" style="font-SIZE: 9pt">
+								</select>
+								<span>月</span>
+								<span id="GZ"></span>
+								<span class="removedate">清空</span>
+							</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr id="week-title" style="background:#eee;">
+							<td width="15%">日</td>
+							<td width="14%">一</td>
+							<td width="14%">二</td>
+							<td width="14%">三</td>
+							<td width="14%">四</td>
+							<td width="14%">五</td>
+							<td width="15%">六</td>
+						</tr>            
+					</tbody>
+				</table>
+			</form>
+		</div>
+	</body>
+</html>

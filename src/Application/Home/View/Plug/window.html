@@ -1,0 +1,34 @@
+<include file="Public/left" />
+
+<form class="table-form" name="form1" enctype="multipart/form-data" method="post" action="">
+
+<div class="nav-table">
+<span class="on">活动插件设置</span>
+</div>
+<div class="nav-bottom"></div>
+
+
+<div class="input-box">
+<ul id="table-one">
+  <li>
+   <label for="activity">活动iframe远程页面链接</label>
+   <input type="text" name="activity" id="activity" value="<{$val.activity}>" />
+  </li>
+  <li>
+   <label for="ac_jump">活动iframe跳转链接</label>
+   <input type="text" name="ac_jump" id="ac_jump" value="<{$val.ac_jump}>" />
+  </li>
+  <li>
+   <label for="ad">广告iframe远程页面链接</label>
+   <input type="text" name="ad" id="ad" value="<{$val.ad}>" />
+  </li>
+  <li>
+   <label for="ad_jump">广告iframe跳转链接</label>
+   <input type="text" name="ad_jump" id="ad_jump" value="<{$val.ad_jump}>" />
+  </li>
+</ul>
+
+<div class="table-but"><input type="submit" name="button" id="button" value="确 认 操 作">&nbsp;请输入带有http://的绝对路径</div>
+</div>
+</form>
+<include file="Public/foot" />

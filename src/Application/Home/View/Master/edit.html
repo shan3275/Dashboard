@@ -1,0 +1,25 @@
+<include file="Public/left" />
+
+
+<form  name="form1" method="post" action="<{:U('editok')}>">
+
+<div class="nav-table">
+<span class="on" href="table-one">编辑用户</span>
+</div>
+<div class="nav-bottom"></div>
+
+<div class="input-box">
+<ul id="table-one">
+  <input type="hidden" name="id" id="id" value="<{$content['id']}>">
+  <li>
+  <label for="pwd">用户密码</label>
+  <input type="text" name="pwd" id="pwd">
+  </li>
+</li>
+
+<div class="table-but"><input type="submit" name="button" id="button" value="确 认 修 改"></div>
+
+</form>
+</div>
+
+<include file="Public/foot" />
