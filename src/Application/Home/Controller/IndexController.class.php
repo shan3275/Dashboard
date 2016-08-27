@@ -77,6 +77,9 @@ class IndexController extends CommonController {
     }
 
             public function simpletable(){
+            $result = M('person_info');
+            $list = $result->select();
+            $this->assign('list',$list);
             // 获取当前账户的登录信息
             $info = M('users')->field('loginnum')->where(array('id' => parent::$userid))->find();
 
@@ -87,7 +90,7 @@ class IndexController extends CommonController {
     }
     
             public function datatable(){
-            $result = M('gather_day');
+            $result = M('day');
             $list = $result->select();
             $this->assign('list',$list);
             // 获取当前账户的登录信息

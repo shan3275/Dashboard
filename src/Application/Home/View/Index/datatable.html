@@ -399,30 +399,30 @@
                 <thead>
                 <tr>
                         <th>日期</th>
-                        <th>单日目标</th>
-                        <th>单日收益</th>
-                        <th>备注</th>
-                        <th>业务ID</th>
+                        <th>姓名</th>
+                        <th>标示</th>
+                        <th>上班时间</th>
+                        <th>下班时间</th>
                       </tr>
                     </thead>
                     <tbody>
                         <volist name="list" id="vo">
                           <tr>
                             <td>{$vo.date}</td>
-                            <td>{$vo.aim}</td>
-                            <td>{$vo.reality}</td>
-                            <td>{$vo.explain}</td>
-                            <td>{$vo.gid}</td>
+                            <td>{$vo.name}</td>
+                            <td>{$vo.mac}</td>
+                            <td>{$vo.work_on_time}</td>
+                            <td>{$vo.work_off_time}</td>
                           </tr>
                         </volist>
                     </tbody>
                     <tfoot>
                       <tr>
                         <th>日期</th>
-                        <th>单日目标</th>
-                        <th>单日收益</th>
-                        <th>备注</th>
-                        <th>业务ID</th>
+                        <th>姓名</th>
+                        <th>标示</th>
+                        <th>上班时间</th>
+                        <th>下班时间</th>
                       </tr>
                     </tfoot>
                   </table>
