@@ -13,17 +13,6 @@ CREATE TABLE `dsp_ad` (
   PRIMARY KEY (`id`)
 )ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
-LOCK TABLES `dsp_ad` WRITE;
-INSERT INTO `dsp_ad` VALUES (1,'测试需求1',0,0,0,'1474239091','1476800947',10,'http://219.234.83.60/ad/qunar.html',0);
-INSERT INTO `dsp_ad` VALUES (2,'测试需求2',1,1,1,'1474259075','1476800947',10,'http://219.234.83.60/ad/qunar.html',0);
-INSERT INTO `dsp_ad` VALUES (3,'测试需求3',2,0,0,'1474239091','1476800947',10,'http://219.234.83.60/ad/qunar.html',0);
-INSERT INTO `dsp_ad` VALUES (4,'测试需求4',3,0,0,'1474239091','1476800947',10,'http://219.234.83.60/ad/qunar.html',0);
-INSERT INTO `dsp_ad` VALUES (5,'测试需求5',4,0,0,'1474239091','1476800947',10,'http://219.234.83.60/ad/qunar.html',0);
-INSERT INTO `dsp_ad` VALUES (6,'测试需求6',5,0,0,'1474239091','1476800947',10,'http://219.234.83.60/ad/qunar.html',0);
-INSERT INTO `dsp_ad` VALUES (7,'测试需求7',6,0,0,'1474239091','1476800947',10,'http://219.234.83.60/ad/qunar.html',0);
-INSERT INTO `dsp_ad` VALUES (8,'测试需求8',7,0,0,'1474239091','1476800947',10,'http://219.234.83.60/ad/qunar.html',0);
-UNLOCK TABLES;
-
 DROP TABLE IF EXISTS `dsp_domain`;
 CREATE TABLE `dsp_domain` (
   `id`       tinyint(4)   unsigned  NOT NULL AUTO_INCREMENT COMMENT 'id',
@@ -32,11 +21,6 @@ CREATE TABLE `dsp_domain` (
   `push_num` int    (32)  unsigned  NOT NULL DEFAULT '0'    COMMENT '投放统计,单位个',
   PRIMARY KEY (`id`)
 )ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-LOCK TABLES `dsp_domain` WRITE;
-INSERT INTO `dsp_domain` VALUES (1,2,'http://pangolinnet.com/',0);
-INSERT INTO `dsp_domain` VALUES (2,2,'http://navi.pangolinnet.com/',0);
-INSERT INTO `dsp_domain` VALUES (3,2,'http://192.168.0.99/~liudeshan/',0);
-UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `dsp_users`;
 CREATE TABLE `dsp_users` (

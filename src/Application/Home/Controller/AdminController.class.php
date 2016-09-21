@@ -37,7 +37,9 @@ class AdminController extends CommonController
 
 
     //需求统计,查看概略
-    public function query($Id='0', $PushStatus='2')
+    //更新推送状态,需要参数$Id!=0,$PushStatus=0or1
+    //删除需求,需要参数$Id!=0, $Del!=0
+    public function query($Id='0', $PushStatus='2', $Del='0')
     {
         //更新推送状态
         if ($Id != '0' && $PushStatus != '2')
@@ -47,6 +49,17 @@ class AdminController extends CommonController
             $con['push_status'] = !$PushStatus;
             M('ad')->where($condition)->save($con);
         }
+
+        //删除需求
+        if ($Id != '0' && $Del != '0')
+        {
+            $result = M('ad');
+            $condition['id'] = $Id;
+            $result->where($condition)->delete();
+            $con_url['ad_id'] = $Id;
+            M('domain')->where($con_url)->delete();
+        }
+
         //推送打开
         define("PUSH_ON", 1);
         //推送关闭
@@ -143,15 +156,15 @@ class AdminController extends CommonController
             {
                 $this->error('优先级重复,请更改!');
             }
-            $query['push_method'] = $_POST['push_method'];
             $query['push_status'] = '0';
-            $query['set_num'] = $_POST['set_num'] * 1000;
-            $query['url'] = $_POST['url'];
+            $query['push_method'] = $_POST['push_method'];
             $begin_time = null;
             $end_time = null;
             sscanf($_POST['time'],"%s - %s",$begin_time, $end_time);
             $query['begin_time'] = strtotime($begin_time)+1;
             $query['end_time'] = strtotime($end_time) + 24*60*60-1;
+            $query['set_num'] = $_POST['set_num'] * 1000;
+            $query['url'] = $_POST['url'];
             $query['push_num'] = '0';
             M('ad')->add($query);
 
@@ -169,8 +182,10 @@ class AdminController extends CommonController
                     $textArr = explode(PHP_EOL,$domain);//"<br />"作为分隔切成数组
                     for($index=0;$index<count($textArr);$index++)
                     {
+                        $query_doman['ad']     = '';
                         $query_doman['ad_id']  = $ad_id;
                         $query_doman['domain'] = $textArr[$index];
+                        $query_doman['push_num'] = '0';
                         M('domain')->add($query_doman);
                     }
 
