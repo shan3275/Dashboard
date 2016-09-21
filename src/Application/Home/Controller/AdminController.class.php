@@ -26,7 +26,7 @@ class AdminController extends CommonController
     /**
      * 系统首页
      */
-    public function admin()
+    public function index()
     {
         // 获取当前账户的登录信息
         $info = M('users')->field('loginnum')->where(array('id' => parent::$userid))->find();
