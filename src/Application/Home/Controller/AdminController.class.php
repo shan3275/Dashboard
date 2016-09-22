@@ -178,8 +178,8 @@ class AdminController extends CommonController
                 {
                     $ad_id = $new_query['id'];
                     \Think\Log::write(sprintf("%s(%d) 新需求id:%d",__FUNCTION__ , __LINE__, $ad_id), 'DEBUG');
-                    $textArr = Array();
-                    $textArr = explode(PHP_EOL,$domain);//"<br />"作为分隔切成数组
+                    $keyword_list = trim($domain);
+                    $textArr = explode("\r\n", $keyword_list);
                     for($index=0;$index<count($textArr);$index++)
                     {
                         $query_doman['ad']     = '';
@@ -188,7 +188,6 @@ class AdminController extends CommonController
                         $query_doman['push_num'] = '0';
                         M('domain')->add($query_doman);
                     }
-
                 }
             }
         }
