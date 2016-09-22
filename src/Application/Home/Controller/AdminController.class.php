@@ -108,7 +108,7 @@ class AdminController extends CommonController
             $query['prio'] = $value['prio'];
             $query['begin_time'] = date("Y-m-d H:i:s", $value['begin_time']);
             $query['end_time'] = date("Y-m-d H:i:s", $value['end_time']);
-            $query['set_num'] = $value['set_num'];
+            $query['set_num'] = $value['set_num']/1000;
             $query['url'] = $value['url'];
         }
 
