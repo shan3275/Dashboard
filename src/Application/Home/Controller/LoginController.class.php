@@ -43,7 +43,7 @@ class LoginController extends Controller {
                 M('users')->where($where)->setInc('loginnum');   // 登录次数加 1
                 M('users')->where($where)->save($data);   // 更新登录时间和登录ip
 
-                $this->success('登录成功,正跳转至系统首页...', U('Admin/admin'));
+                $this->success('登录成功,正跳转至系统首页...', U('Admin/index'));
             } else {
                 $this->error('登录失败,用户名或密码不正确!');
             }
