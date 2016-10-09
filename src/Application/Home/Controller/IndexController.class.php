@@ -76,17 +76,42 @@ class IndexController extends CommonController {
                 if ($info['push_method'] == PUSH_DX)
                 {
                     $con['ad_id'] = $info['id'];
-                    $con['domain'] = $refer;
+                    //$con['domain'] = $refer;
                     \Think\Log::write(sprintf("%s(%d) 定向查询,id->(%d),domain->(%s)",__FUNCTION__ , __LINE__,
                         $con['ad_id'], $con['domain']), 'DEBUG');
                     // 把查询条件传入查询方法
-                    $domain = M("domain")->where($con)->find();
+                    //命中标志
+                    $shot = 0;
+                    $domain = M("domain")->where($con)->select();
                     if ($domain == null )
                     {
                         \Think\Log::write(sprintf("%s(%d) 定向未命中域名,故退出继续查询",__FUNCTION__ , __LINE__), 'DEBUG');
                         continue;
                     }
-                    \Think\Log::write(sprintf("%s(%d) 命中域名(%s)",__FUNCTION__ , __LINE__, $domain['domain']), 'DEBUG');
+                    else
+                    {
+                        foreach ($domain as $key => $value) {
+                            if(stristr($refer,$value['domain']))
+                            {
+                                $con['domain'] = $value['domain']; //后面增加统计使用
+                                $shot = 1;
+                                break;
+                            }
+                        }
+                        \Think\Log::write(sprintf("%s(%d) 命中标志(%d)",__FUNCTION__ , __LINE__, $shot), 'DEBUG');
+
+                    }
+
+                    if ($shot)
+                    {
+                        \Think\Log::write(sprintf("%s(%d) 命中域名(%s) refer(%s)",__FUNCTION__ , __LINE__, $con['domain'], $refer),'DEBUG');
+                    }
+                    else
+                    {
+                        \Think\Log::write(sprintf("%s(%d) 未命中域名(%s)",__FUNCTION__ , __LINE__,  $refer),'DEBUG');
+                        continue;
+                    }
+
                 }
                 //普推+定向推送返回
                 $url=$info['url'];
@@ -94,7 +119,7 @@ class IndexController extends CommonController {
 
                 //增加统计
                 $User->where($condition)->setInc('push_num');
-                if ($info['push_method'] == PUSH_DX)
+                if ($info['push_method'] == PUSH_DX && $shot)
                 {
                     M("domain")->where($con)->setInc('push_num');
                 }
