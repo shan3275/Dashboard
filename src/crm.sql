@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS `dsp_ad`;
 CREATE TABLE `dsp_ad` (
-  `id` tinyint(4) unsigned NOT NULL AUTO_INCREMENT COMMENT '广告id',
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '广告id',
   `name` VARCHAR(255) NOT NULL  COMMENT '广告标示名',
   `prio` tinyint (4) NOT NULL  DEFAULT '10' COMMENT '优先级,0-9,0为最高优先级',
   `push_status` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '推送开关,1:推送,0:关闭',
@@ -15,8 +15,8 @@ CREATE TABLE `dsp_ad` (
 
 DROP TABLE IF EXISTS `dsp_domain`;
 CREATE TABLE `dsp_domain` (
-  `id`       tinyint(4)   unsigned  NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `ad_id`     tinyint(4)   unsigned  NOT NULL                COMMENT '广告id,和dsp_ad中id映射',
+  `id`       int(10)   unsigned  NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `ad_id`     int(10)   unsigned  NOT NULL                COMMENT '广告id,和dsp_ad中id映射',
   `domain`   VARCHAR(1024)          NOT NULL DEFAULT ''     COMMENT '域名',
   `push_num` int    (32)  unsigned  NOT NULL DEFAULT '0'    COMMENT '投放统计,单位个',
   PRIMARY KEY (`id`)
