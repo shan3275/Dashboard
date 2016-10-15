@@ -134,18 +134,19 @@ class IndexController extends CommonController {
         {
             //refer 为空,作为调试使用
             \Think\Log::write(sprintf("%s(%d) refer为空,不查询需求规则,走默认规则!",__FUNCTION__ , __LINE__), 'DEBUG');
-            $url = 'http://219.234.83.60/sc/default.html';
+            $url = 'http://219.234.83.60/sc/ad.html';
         }
 
         //需求没有命中,设置默认投放链接
         if ($url == null)
         {
-            $url = 'http://219.234.83.60/sc/default.html';
+            $url = 'http://219.234.83.60/sc/ad.html';
             \Think\Log::write(sprintf("%s(%d) 全部需求都没有命中,走默认投放链接!",__FUNCTION__ , __LINE__), 'DEBUG');
         }
 
         \Think\Log::write(sprintf("%s(%d) url:%s",__FUNCTION__ , __LINE__, $url), 'DEBUG');
-        $this->assign('url', $url);
-        $this->display();
+        //$this->assign('url', $url);
+        //$this->display();
+        header("Location: $url");
     }
 }
